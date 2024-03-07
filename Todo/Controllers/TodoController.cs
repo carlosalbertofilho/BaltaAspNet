@@ -27,8 +27,10 @@ namespace Todo.Controllers
             )
         {
             _logger.Log(LogLevel.Information, "Getting todo by id");
+
             var todo = _context.Todos.FirstOrDefault(todo => todo.Id == id);
             if (todo == null) return NotFound();
+
             return Ok(todo);
         }
 
@@ -40,8 +42,10 @@ namespace Todo.Controllers
             )
         {
             _logger.Log(LogLevel.Information, "Creating todo");
+
             _context.Todos.Add(todo);
             _context.SaveChanges();
+
             return CreatedAtRoute("GetById", new { id = todo.Id }, todo);
         }
 
